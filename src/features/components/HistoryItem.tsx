@@ -1,6 +1,8 @@
 import { Box, IconButton, Typography, styled } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { WeatherResponse } from '../../services/types';
+import { transformDataToDisplayData } from '../transformer';
 
 const Root = styled(Box)(() => ({
   flex: '1',
@@ -20,12 +22,18 @@ const ActionButtonContainer = styled(Box)(() => ({
   justifyContent: 'flex-end',
 }));
 
-export default function HistoryItem() {
+type HistoryItemProps = {
+  entry: WeatherResponse;
+};
+
+export default function HistoryItem({ entry }: HistoryItemProps) {
+  const transformedData = transformDataToDisplayData(entry);
+
   return (
     <Root>
-      <Typography variant="body2">Johor, My</Typography>
+      <Typography variant="body2">{transformedData.location}</Typography>
       <ActionButtonContainer>
-        <Typography variant="caption">01-09-2022 09:41am</Typography>
+        <Typography variant="caption">{transformedData.dateTime}</Typography>
         <IconButton
           color="primary"
           size="small"

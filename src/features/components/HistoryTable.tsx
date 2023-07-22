@@ -1,6 +1,8 @@
 import { Box, Typography, styled } from '@mui/material';
 import React from 'react';
 import HistoryItem from './HistoryItem';
+import { useSelector } from 'react-redux';
+import { selectWeatherSearchHistory } from '../selector';
 
 const Root = styled(Box)(() => ({
   marginTop: '0.5rem',
@@ -11,10 +13,18 @@ const Root = styled(Box)(() => ({
 }));
 
 export default function HistoryTable() {
+  const searchHistory = useSelector(selectWeatherSearchHistory);
+
   return (
     <Root>
       <Typography variant="body2">Search History</Typography>
-      <HistoryItem />
+      {searchHistory.length === 0 && <>No Records</>}
+      {searchHistory.length > 0 &&
+        searchHistory.map((entry) => (
+          <>
+            <HistoryItem entry={entry} />
+          </>
+        ))}
     </Root>
   );
 }

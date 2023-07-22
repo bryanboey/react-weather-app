@@ -1,9 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
+import { ThemeProvider } from '@emotion/react';
+import { Box, createTheme } from '@mui/material';
 import './App.css';
 import Weather from './pages/Weather';
-import { ThemeProvider } from '@emotion/react';
-import { Box, createTheme, makeStyles } from '@mui/material';
 
 const theme = createTheme({
   typography: {

@@ -1,10 +1,20 @@
 import { Box, IconButton, TextField } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { useDispatch } from 'react-redux';
+import { setWeatherSearch } from '../weatherSlice';
+import { useState } from 'react';
 
 export default function SearchBar() {
+  const [searchString, setSearchString] = useState('');
+  const dispatch = useDispatch();
+  const handleSearch = () => {
+    dispatch(setWeatherSearch(searchString));
+    setSearchString('');
+  };
   return (
     <Box sx={{ display: 'flex' }}>
       <TextField
+        type="text"
         size="small"
         fullWidth
         placeholder="Enter a Country/City"
@@ -15,6 +25,9 @@ export default function SearchBar() {
             border: 'none',
           },
         }}
+        value={searchString}
+        onChange={(e) => setSearchString(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
       />
       <IconButton
         color="primary"

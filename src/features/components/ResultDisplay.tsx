@@ -1,5 +1,11 @@
 import { Box, Typography, styled } from '@mui/material';
-import { fontWeight } from '@mui/system';
+import { WeatherResponse } from '../../services/types';
+import { useMemo } from 'react';
+import { transformDataToDisplayData } from '../transformer';
+
+type ResultDisplayProps = {
+  data: WeatherResponse;
+};
 
 const FlexBox = styled(Box)(() => ({
   flex: 1,
@@ -9,19 +15,28 @@ const FlexBox = styled(Box)(() => ({
   color: '#757575',
 }));
 
-export default function ResultDisplay() {
+export default function ResultDisplay({ data }: ResultDisplayProps) {
+  const transformedData = useMemo(
+    () => transformDataToDisplayData(data),
+    [data]
+  );
   return (
     <>
       <Typography variant="body2">Today's Weather</Typography>
-      <Typography variant="h3">26°</Typography>
-      <Typography variant="body2">H: 29° L: 26°</Typography>
+      <Typography variant="h3">{transformedData.temp}°</Typography>
+      <Typography variant="body2">
+        {' '}
+        H: {transformedData.tempMax}° L: {transformedData.tempMin}°
+      </Typography>
       <FlexBox>
         <Typography variant="caption" sx={{ fontWeight: '600' }}>
-          Johor, MY
+          {transformedData.location}
         </Typography>
-        <Typography variant="caption">01-09-2022 09:41am</Typography>
-        <Typography variant="caption">Humidity: 58%</Typography>
-        <Typography variant="caption">Clouds</Typography>
+        <Typography variant="caption">{transformedData.dateTime}</Typography>
+        <Typography variant="caption">
+          Humidity: {transformedData.humidity}%
+        </Typography>
+        <Typography variant="caption">{transformedData.main}</Typography>
       </FlexBox>
     </>
   );
