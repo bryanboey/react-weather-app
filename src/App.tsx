@@ -1,24 +1,35 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Weather from './pages/Weather';
+import { ThemeProvider } from '@emotion/react';
+import { Box, createTheme, makeStyles } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    // In Chinese and Japanese the characters are usually larger,
+    // so a smaller fontsize may be appropriate.
+    fontSize: 14,
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <ThemeProvider theme={theme}>
+        <Box
+          sx={{
+            backgroundImage: `url("/assets/bg-dark.png")`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '100vh',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Weather />
+        </Box>
+      </ThemeProvider>
     </div>
   );
 }
