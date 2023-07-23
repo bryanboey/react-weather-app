@@ -1,6 +1,10 @@
 import { WeatherResponse } from '../services/types';
+import { WeatherDisplayData } from './types';
 
-export const transformDataToDisplayData = (data: WeatherResponse) => ({
+export const transformDataToDisplayData = (
+  data: WeatherResponse
+): WeatherDisplayData => ({
+  id: data.id,
   location: data.name,
   temp: data.main.temp.toFixed(),
   tempMax: data.main.temp_max.toFixed(),

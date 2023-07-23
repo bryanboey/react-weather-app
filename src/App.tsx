@@ -8,6 +8,19 @@ const theme = createTheme({
     // In Chinese and Japanese the characters are usually larger,
     // so a smaller fontsize may be appropriate.
     fontSize: 14,
+    fontFamily: [
+      'Noto Sans',
+      'sans-serif',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
 });
 

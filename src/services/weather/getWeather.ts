@@ -13,6 +13,7 @@ export const getWeather = apiSlice.injectEndpoints({
         },
       }),
       providesTags: ['Weather'],
+      keepUnusedDataFor: 0,
     }),
   }),
 });

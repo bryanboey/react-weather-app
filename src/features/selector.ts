@@ -5,3 +5,6 @@ export const selectWeatherSearch = (state: WeatherModule) =>
 
 export const selectWeatherSearchHistory = (state: WeatherModule) =>
   state[WEATHER_KEY].weatherSearchHistory;
+
+export const selectWeatherDisplay = (state: WeatherModule) =>
+  state[WEATHER_KEY].weatherDisplay;
